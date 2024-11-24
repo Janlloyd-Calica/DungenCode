@@ -26,6 +26,10 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".MainActivity2"></activity>
+        <activity android:name="gameplayss"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            tools:ignore="DiscouragedApi" />
     </application>
 
 </manifest>
