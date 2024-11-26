@@ -102,7 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11"
-        tools:text=" DUNGEON" />
+        tools:text="DUNGEON" />
 
     <ImageView
         android:id="@+id/imageView13"
