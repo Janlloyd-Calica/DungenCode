@@ -4,25 +4,11 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-10-20T13:39:51.025240Z">
-          <Target type="DEFAULT_BOOT">
-            <template>
-              <DeviceId pluginId="FirebaseDirectAccess" type="TEMPLATE" identifier="model_id=shiba/34" />
-            </template>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="MainActivity">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-24T14:03:09.096373500Z">
+        <DropdownSelection timestamp="2024-11-28T06:09:39.220698200Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="FirebaseDirectAccess" identifier="reservation=projects/myfirstappcalica-1514ceb7/deviceSessions/session-1ll6k208xdtni" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\nikka\.android\avd\Pixel_8_Pro_API_35_1.avd" />
             </handle>
-            <template>
-              <DeviceId pluginId="FirebaseDirectAccess" type="TEMPLATE" identifier="model_id=shiba/34" />
-            </template>
           </Target>
         </DropdownSelection>
         <DialogSelection />

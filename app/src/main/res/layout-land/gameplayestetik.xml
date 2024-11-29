@@ -51,7 +51,4 @@
         app:layout_constraintVertical_bias="0.835"
         app:srcCompat="@drawable/press" />
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

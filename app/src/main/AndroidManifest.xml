@@ -30,6 +30,12 @@
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             tools:ignore="DiscouragedApi" />
+        <activity android:name=".ElaineActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".SalvyActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".ChameleonActivity" android:screenOrientation="landscape"/>
+
+        <!--Level 1-->
+        <activity android:name=".ChamberActivity" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

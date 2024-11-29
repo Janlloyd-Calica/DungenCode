@@ -98,18 +98,19 @@
         app:layout_constraintStart_toStartOf="@+id/line1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.034"
-        app:srcCompat="@drawable/elainedes" />
+        app:srcCompat="@drawable/elainedes"
+        android:onClick="onCharacterSelected" />
 
     <ImageView
         android:id="@+id/imageView27"
         android:layout_width="403dp"
         android:layout_height="114dp"
+        android:onClick="onCharacterSelected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47"
         app:srcCompat="@drawable/salvydes" />
 
     <ImageView
@@ -122,7 +123,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.767"
-        app:srcCompat="@drawable/jeffdes" />
+        app:srcCompat="@drawable/jeffdes"
+        android:onClick="onCharacterSelected" />
 
     <ImageView
         android:id="@+id/imageView29"
