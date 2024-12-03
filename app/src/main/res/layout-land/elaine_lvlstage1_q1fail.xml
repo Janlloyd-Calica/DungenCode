@@ -49,8 +49,7 @@
             android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/hart_lives" />
+            app:srcCompat="@drawable/hart_empty" />
     </LinearLayout>
 
     <!-- Elaine's Dialogue -->
@@ -77,6 +76,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backgroundImage"
-        app:srcCompat="@drawable/elaine_dialogue4" />
+        app:srcCompat="@drawable/elaine_dialogueq1fail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

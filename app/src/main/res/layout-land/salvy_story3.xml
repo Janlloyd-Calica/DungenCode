@@ -8,15 +8,15 @@
     <!-- Background Image -->
     <ImageView
         android:id="@+id/backgroundImage"
-        android:layout_width="996dp"
-        android:layout_height="451dp"
+        android:layout_width="1010dp"
+        android:layout_height="431dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/salvy_storybg3" />
 
     <!-- Hearts Container (Three Hearts) -->
@@ -27,29 +27,7 @@
         android:layout_marginStart="16dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/heart1"
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/hart_lives" />
-
-        <ImageView
-            android:id="@+id/heart2"
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/hart_lives" />
-
-        <ImageView
-            android:id="@+id/heart3"
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/hart_lives" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/textStory"
@@ -65,15 +43,13 @@
         app:srcCompat="@drawable/salvy_storytxt1" />
 
     <ImageView
-        android:id="@+id/dialoguePlate"
-        android:layout_width="389dp"
-        android:layout_height="164dp"
-        android:layout_marginHorizontal="0dp"
-        android:layout_marginTop="260dp"
+        android:id="@+id/pressContinue"
+        android:layout_width="408dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.998"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage"
-        app:srcCompat="@drawable/salvy_profile" />
+        app:srcCompat="@drawable/presscontinue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

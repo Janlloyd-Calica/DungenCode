@@ -76,6 +76,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backgroundImage"
-        app:srcCompat="@drawable/elaine_dialogue3" />
+        app:srcCompat="@drawable/elaine_dialogueq1correct" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
