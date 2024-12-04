@@ -16,19 +16,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/elaine_storybg4" />
+        app:srcCompat="@drawable/elaine_storybg7" />
 
     <ImageView
-        android:id="@+id/chamberText"
-        android:layout_width="554dp"
-        android:layout_height="173dp"
+        android:id="@+id/guardDialogue"
+        android:layout_width="458dp"
+        android:layout_height="157dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.902"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
-        app:srcCompat="@drawable/elaine_storylvl2" />
+        app:srcCompat="@drawable/elaine_guarddialogue" />
+
+    <ImageView
+        android:id="@+id/guardImage"
+        android:layout_width="526dp"
+        android:layout_height="426dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
+        app:layout_constraintHorizontal_bias="0.286"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/elaine_guard" />
 
     <ImageView
         android:id="@+id/pressContinue"

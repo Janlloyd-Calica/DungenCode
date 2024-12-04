@@ -16,19 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/elaine_storybg4" />
+        app:srcCompat="@drawable/elaine_storybg6" />
 
     <ImageView
-        android:id="@+id/chamberText"
-        android:layout_width="554dp"
-        android:layout_height="173dp"
+        android:id="@+id/hearText"
+        android:layout_width="551dp"
+        android:layout_height="167dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
-        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
-        app:srcCompat="@drawable/elaine_storylvl2" />
+        app:srcCompat="@drawable/elaine_storyph5" />
 
     <ImageView
         android:id="@+id/pressContinue"
