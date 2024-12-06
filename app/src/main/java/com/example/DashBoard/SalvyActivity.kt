@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.content.pm.ActivityInfo
 import android.util.Log
-import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.app.AlertDialog
-import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,11 +17,6 @@ class SalvyActivity : AppCompatActivity() {
     private val TAG = "SalvyActivity"
     private var currentLayout = 0
     private var lives = 3 // Player starts with 3 lives
-
-    private lateinit var nameInput: EditText
-    private lateinit var ageInput: EditText
-    private lateinit var isActiveInput: EditText
-    private lateinit var conditionInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -197,55 +191,49 @@ class SalvyActivity : AppCompatActivity() {
     }
 
     private fun setupLevel1Inputs() {
-        nameInput = findViewById(R.id.nameInput)
-        ageInput = findViewById(R.id.ageInput)
-        isActiveInput = findViewById(R.id.isActiveInput)
+        val nameButton = findViewById<Button>(R.id.nameButton)
+        val ageButton = findViewById<Button>(R.id.ageButton)
+        val isActiveButton = findViewById<Button>(R.id.isActiveButton)
 
-        nameInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                ageInput.requestFocus()
-                return@setOnEditorActionListener true
+        nameButton.setOnClickListener {
+            showInputDialog("Enter name") { input ->
+                nameButton.text = input
             }
-            false
         }
 
-        ageInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                isActiveInput.requestFocus()
-                return@setOnEditorActionListener true
+        ageButton.setOnClickListener {
+            showInputDialog("Enter age") { input ->
+                ageButton.text = input
             }
-            false
         }
 
-        isActiveInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
+        isActiveButton.setOnClickListener {
+            showInputDialog("Enter isActive") { input ->
+                isActiveButton.text = input
                 checkAnswer()
-                return@setOnEditorActionListener true
             }
-            false
         }
     }
 
     private fun checkAnswer() {
-        val name = nameInput.text.toString()
-        val age = ageInput.text.toString()
-        val isActive = isActiveInput.text.toString().toLowerCase()
+        val name = findViewById<Button>(R.id.nameButton).text.toString()
+        val age = findViewById<Button>(R.id.ageButton).text.toString()
+        val isActive = findViewById<Button>(R.id.isActiveButton).text.toString().toLowerCase()
 
         val isCorrect = name == "name" && age == "age" && isActive == "isactive"
         handleAnswer(isCorrect, R.layout.salvy_lvlstage1_q1correct, R.layout.salvy_lvlstage1_q1fail)
     }
 
     private fun setupLevel3Inputs() {
-        conditionInput = findViewById(R.id.conditionInput)
+        val conditionButton = findViewById<Button>(R.id.conditionButton)
 
-        conditionInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                val condition = conditionInput.text.toString().replace(" ", "")
+        conditionButton.setOnClickListener {
+            showInputDialog("Enter condition") { input ->
+                conditionButton.text = input
+                val condition = input.replace(" ", "")
                 val isCorrect = condition == "treasureVisible&&trapDisabled"
                 handleAnswer(isCorrect, R.layout.salvy_lvlstage3_q3correct, R.layout.salvy_lvlstage3_q3fail)
-                return@setOnEditorActionListener true
             }
-            false
         }
     }
 
@@ -301,5 +289,17 @@ class SalvyActivity : AppCompatActivity() {
                 heart.setImageResource(if (i < lives) R.drawable.hart_lives else R.drawable.hart_empty)
             }
         }
+    }
+
+    private fun showInputDialog(title: String, onInput: (String) -> Unit) {
+        val input = EditText(this)
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setView(input)
+            .setPositiveButton("OK") { _, _ ->
+                onInput(input.text.toString())
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 }

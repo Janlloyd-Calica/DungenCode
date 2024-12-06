@@ -4,29 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.content.pm.ActivityInfo
 import android.util.Log
-import android.view.KeyEvent
 import android.view.MotionEvent
-import android.widget.EditText
-import android.widget.ImageView
-import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import android.app.AlertDialog
+import android.widget.EditText
 
 class ElaineActivity : AppCompatActivity() {
     private val TAG = "ElaineActivity"
     private var currentLayout = 0
     private var lives = 3 // Player starts with 3 lives
-
-    private lateinit var ifInput: EditText
-    private lateinit var elifInput: EditText
-    private lateinit var potionInput: EditText
-    private lateinit var mapInput: EditText
-    private lateinit var beesInput: EditText
-    private lateinit var potionInput2: EditText
-    private lateinit var mapInput2: EditText
-    private lateinit var beesInput2: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -182,60 +172,46 @@ class ElaineActivity : AppCompatActivity() {
         )
     }
 
-
     private fun setupLevel2Inputs() {
-        ifInput = findViewById(R.id.ifInput)
-        elifInput = findViewById(R.id.elifInput)
+        val ifButton = findViewById<Button>(R.id.ifButton)
+        val elifButton = findViewById<Button>(R.id.elifButton)
 
-        ifInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                elifInput.requestFocus()
-                return@setOnEditorActionListener true
+        ifButton.setOnClickListener {
+            showInputDialog("Enter 'if' condition") { input ->
+                ifButton.text = input
+                checkLevel2Answer()
             }
-            false
         }
 
-        elifInput.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
+        elifButton.setOnClickListener {
+            showInputDialog("Enter 'elif' condition") { input ->
+                elifButton.text = input
                 checkLevel2Answer()
-                return@setOnEditorActionListener true
             }
-            false
         }
     }
 
     private fun setupLevel3Inputs() {
-        potionInput = findViewById(R.id.potionInput)
-        mapInput = findViewById(R.id.mapInput)
-        beesInput = findViewById(R.id.beesInput)
-        potionInput2 = findViewById(R.id.potionInput2)
-        mapInput2 = findViewById(R.id.mapInput2)
-        beesInput2 = findViewById(R.id.beesInput2)
+        val inputButtons = listOf(
+            R.id.potionButton, R.id.mapButton, R.id.beesButton,
+            R.id.potionButton2, R.id.mapButton2, R.id.beesButton2
+        ).map { findViewById<Button>(it) }
 
-        val inputs = listOf(potionInput, mapInput, beesInput, potionInput2, mapInput2, beesInput2)
-
-        for (i in 0 until inputs.size - 1) {
-            inputs[i].setOnEditorActionListener { _, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_NEXT || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    inputs[i + 1].requestFocus()
-                    return@setOnEditorActionListener true
+        inputButtons.forEachIndexed { index, button ->
+            button.setOnClickListener {
+                showInputDialog("Enter item ${index + 1}") { input ->
+                    button.text = input
+                    if (index == inputButtons.lastIndex) {
+                        checkLevel3Answer()
+                    }
                 }
-                false
             }
-        }
-
-        inputs.last().setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                checkLevel3Answer()
-                return@setOnEditorActionListener true
-            }
-            false
         }
     }
 
     private fun checkLevel2Answer() {
-        val ifScore = ifInput.text.toString()
-        val elifScore = elifInput.text.toString()
+        val ifScore = findViewById<Button>(R.id.ifButton).text.toString()
+        val elifScore = findViewById<Button>(R.id.elifButton).text.toString()
 
         if (ifScore == "score" && elifScore == "score") {
             navigateToLayout(R.layout.elaine_lvlstage2_q2correct)
@@ -252,13 +228,9 @@ class ElaineActivity : AppCompatActivity() {
     private fun checkLevel3Answer() {
         val correctAnswers = listOf("potion", "map", "bees", "potion", "map", "bees")
         val userAnswers = listOf(
-            potionInput.text.toString(),
-            mapInput.text.toString(),
-            beesInput.text.toString(),
-            potionInput2.text.toString(),
-            mapInput2.text.toString(),
-            beesInput2.text.toString()
-        )
+            R.id.potionButton, R.id.mapButton, R.id.beesButton,
+            R.id.potionButton2, R.id.mapButton2, R.id.beesButton2
+        ).map { findViewById<Button>(it).text.toString() }
 
         val isCorrect = userAnswers == correctAnswers
         handleAnswer(isCorrect, R.layout.elaine_lvlstage3_q3correct, R.layout.elaine_story5)
@@ -318,12 +290,22 @@ class ElaineActivity : AppCompatActivity() {
                 val intent = Intent(this, gameplayss::class.java)
                 intent.putExtra("showCharacterSelect", true)
                 startActivity(intent)
-                // Finish ElaineActivity to prevent unintended behavior
                 finish()
             } catch (e: Exception) {
                 Log.e(TAG, "Error launching gameplayss", e)
             }
         }
     }
-}
 
+    private fun showInputDialog(title: String, onInput: (String) -> Unit) {
+        val input = EditText(this)
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setView(input)
+            .setPositiveButton("OK") { _, _ ->
+                onInput(input.text.toString())
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+}
